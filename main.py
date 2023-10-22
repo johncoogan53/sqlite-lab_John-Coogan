@@ -1,6 +1,7 @@
 """
 ETL-Query script
 """
+import time
 import fire
 from mylib.extract import extract
 from mylib.transform_load import load
@@ -8,6 +9,7 @@ from mylib.query import query
 
 
 def main(query_string):
+    start_time = time.time()
     # Extract
     print("Extracting data...")
     extract()
@@ -19,6 +21,9 @@ def main(query_string):
     # Query
     print("Querying data...")
     query(query_string)
+
+    end_time = time.time()
+    print("Total time taken: {}".format(end_time - start_time))
 
 
 if __name__ == "__main__":
